@@ -1,0 +1,17 @@
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\bin\Debug\net7.0\CurrencyConverter.ConsoleApp.exe
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\bin\Debug\net7.0\CurrencyConverter.ConsoleApp.deps.json
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\bin\Debug\net7.0\CurrencyConverter.ConsoleApp.runtimeconfig.json
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\bin\Debug\net7.0\CurrencyConverter.ConsoleApp.dll
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\bin\Debug\net7.0\CurrencyConverter.ConsoleApp.pdb
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\obj\Debug\net7.0\CurrencyConverter.ConsoleApp.csproj.AssemblyReference.cache
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\obj\Debug\net7.0\CurrencyConverter.ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\obj\Debug\net7.0\CurrencyConverter.ConsoleApp.AssemblyInfoInputs.cache
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\obj\Debug\net7.0\CurrencyConverter.ConsoleApp.AssemblyInfo.cs
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\obj\Debug\net7.0\CurrencyConverter.ConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\obj\Debug\net7.0\CurrencyConverter.ConsoleApp.dll
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\obj\Debug\net7.0\refint\CurrencyConverter.ConsoleApp.dll
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\obj\Debug\net7.0\CurrencyConverter.ConsoleApp.pdb
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\obj\Debug\net7.0\CurrencyConverter.ConsoleApp.genruntimeconfig.cache
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\obj\Debug\net7.0\ref\CurrencyConverter.ConsoleApp.dll
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.ConsoleApp\obj\Debug\net7.0\CurrencyConverter.ConsoleApp.csproj.CopyComplete
