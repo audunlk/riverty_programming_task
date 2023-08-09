@@ -5,14 +5,15 @@ namespace CurrencyConverter.ConsoleApp.Operations.API
 {
     public class GetExchangeRates
     {
-        public static async Task<Response> GetExchangeRate(HttpClient client)
+        public static async Task<Response> GetExchangeRate(HttpClient client, UserInput userInput)
         {
             try
             {
-                var apiUrl = "http://data.fixer.io/api/latest?access_key=";
-                //dont bothered hiding the api key, as it is limited and so you can try it out yourself.
+                var date = userInput.Date;
                 var apiKey = "4aa93365f9a2440b69fe44df555f711c";
-                var response = await client.GetAsync(apiUrl + apiKey);
+                var apiUrl = $"http://data.fixer.io/api/{date}?access_key={apiKey}";
+                //dont bothered hiding the api key, as it is limited and so you can try it out yourself.
+                var response = await client.GetAsync(apiUrl);
                 var content = await response.Content.ReadAsStringAsync();
                 //ddeserialize the JSON response
                 var result = JsonConvert.DeserializeObject<Response>(content);

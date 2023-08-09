@@ -1,6 +1,6 @@
 ﻿using CurrencyConverter.ConsoleApp.Models;
 
-namespace CurrencyConverter.ConsoleApp.Operations.API
+namespace CurrencyConverter.ConsoleApp.Operations.Validators
 {
     public class CheckResponseValidity
     {

@@ -28,4 +28,8 @@
     <ProjectReference Include="..\CurrencyConverter.ConsoleApp\CurrencyConverter.ConsoleApp.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Systems\Operations\Input\" />
+  </ItemGroup>
+
 </Project>

@@ -1,52 +1,48 @@
 ﻿using CurrencyConverter.ConsoleApp.Models;
+using CurrencyConverter.ConsoleApp.Operations.Validators;
 
-namespace CurrencyConverter.ConsoleApp.Operations.Input
+public class GetInputFromUser
 {
-    public class GetInputFromUser
+    //would split further into different classes if real application.
+    public static UserInput GetInput(Response responsemodel)
     {
-        //let the user type a currency code from and to pluss an amount
-        public static UserInput GetInput(Response responsemodel)
+        var from = GetCurrencyFromUser("Please type in the currency code you want to convert from. EXAMPLE: USD", responsemodel);
+        var to = GetCurrencyFromUser("Please type in the currency code you want to convert to", responsemodel);
+        var amount = GetAmountFromUser();
+
+        return new UserInput
         {
-            //Get the from currency from the user
-            Console.WriteLine("Please type in the currency code you want to convert from. EXAMPLE: USD");
-            var from = Console.ReadLine().ToUpper();
-            //check if the currency code is valid
-            if (CheckInputValidity.CheckInput(responsemodel, from) == false)
-            {
-                Console.WriteLine("You need to type in a valid currency code");
-                //recursive call to get the input again
-                return GetInput(responsemodel);
-            }
+            FromCurrency = from,
+            ToCurrency = to,
+            Amount = amount
+        };
+    }
 
-            //Get the to currency from the user
-            Console.WriteLine("Please type in the currency code you want to convert to");
-            var to = Console.ReadLine().ToUpper();
-            if (CheckInputValidity.CheckInput(responsemodel, to) == false)
-            {
-                Console.WriteLine("You need to type in a valid currency code");
-                //recursive call to get the input again
-                return GetInput(responsemodel);
-            }
-            //Get the amount from the user
-            Console.WriteLine("Please type in the amount you want to convert");
-            var amountString = Console.ReadLine();
-            //convert the amount to decimal
+    private static string GetCurrencyFromUser(string message, Response responsemodel)
+    {
+        Console.WriteLine(message);
+        var currencyCode = Console.ReadLine().ToUpper();
 
-            //check for right input type
-            if (decimal.TryParse(amountString, out decimal amount) == false)
-            {
-                Console.WriteLine("You need to type in a valid amount");
-                //recursive call to get the input again
-                return GetInput(responsemodel);
-            }
-
-            //return as object with from to and amount
-            return new UserInput
-            {
-                FromCurrency = from,
-                ToCurrency = to,
-                Amount = amount
-            };
+        if (CheckInputValidity.CheckInput(responsemodel, currencyCode) == false)
+        {
+            Console.WriteLine("You need to type in a valid currency code");
+            return GetCurrencyFromUser(message, responsemodel); // Recursive call
         }
+
+        return currencyCode;
+    }
+
+    private static decimal GetAmountFromUser()
+    {
+        Console.WriteLine("Please type in the amount you want to convert");
+        var amountString = Console.ReadLine();
+
+        if (decimal.TryParse(amountString, out decimal amount) == false)
+        {
+            Console.WriteLine("You need to type in a valid amount");
+            return GetAmountFromUser(); // Recursive call
+        }
+
+        return amount;
     }
 }

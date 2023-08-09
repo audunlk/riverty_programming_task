@@ -1,7 +1,7 @@
 using CurrencyConverter.ConsoleApp.Models;
-using CurrencyConverter.ConsoleApp.Operations.Input;
+using CurrencyConverter.ConsoleApp.Operations.Validators;
 
-namespace CurrencyConverter.UnitTests.Systems.Operations.Input;
+namespace CurrencyConverter.UnitTests.Systems.Operations.Validators;
 public class CheckInputValidityTests
 {
     [Fact]
