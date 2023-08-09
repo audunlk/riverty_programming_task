@@ -13,7 +13,7 @@ public class CheckResponseValidityTests
     public void CheckResponse_WhenResponseIsNull_ThrowsException()
     {
         //Arrange
-        Response response = null;
+        Response response = null!;
         //Act
         //Assert
         Assert.Throws<Exception>(() => CheckResponseValidity.CheckResponse(response));

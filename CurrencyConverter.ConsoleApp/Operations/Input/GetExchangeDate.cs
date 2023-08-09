@@ -9,7 +9,7 @@ namespace CurrencyConverter.ConsoleApp.Operations.Input
         {
             Console.WriteLine("Please type a date in the format YYYY-MM-DD or press enter to use the latest rates");
             var date = Console.ReadLine();
-            if (date.Trim() == string.Empty)
+            if (date!.Trim() == string.Empty)
             {
                 date = "latest";
             }

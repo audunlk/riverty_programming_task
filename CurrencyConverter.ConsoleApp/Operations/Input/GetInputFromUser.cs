@@ -21,7 +21,7 @@ public class GetInputFromUser
     private static string GetCurrencyFromUser(string message, Response responsemodel)
     {
         Console.WriteLine(message);
-        var currencyCode = Console.ReadLine().ToUpper();
+        var currencyCode = Console.ReadLine()!.ToUpper();
 
         if (CheckInputValidity.CheckInput(responsemodel, currencyCode) == false)
         {

@@ -1,6 +1,4 @@
-﻿using CurrencyConverter.ConsoleApp.Operations.API;
-using CurrencyConverter.ConsoleApp.Operations.Conversion;
-using CurrencyConverter.ConsoleApp.Operations.Input;
+﻿using CurrencyConverter.ConsoleApp.Operations.Conversion;
 using CurrencyConverter.ConsoleApp.Services;
 
 namespace CurrencyConverter.ConsoleApp

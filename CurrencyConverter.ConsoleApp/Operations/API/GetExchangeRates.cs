@@ -20,7 +20,7 @@ namespace CurrencyConverter.ConsoleApp.Operations.API
                 //If a client error hasnt been throw, we can assume the api returns an object.
                 //return the response
                 Console.WriteLine("Exchange rates successfully retrieved");
-                return result;
+                return result!;
             }
             catch (HttpRequestException ex)
             {
