@@ -1,14 +1,14 @@
-using CurrencyConverter.ConsoleApp.Operations;
 using CurrencyConverter.ConsoleApp.Models;
+using CurrencyConverter.ConsoleApp.Operations.Input;
 
-namespace CurrencyConverter.UnitTests.Systems.Operations;
+namespace CurrencyConverter.UnitTests.Systems.Operations.Input;
 public class CheckInputValidityTests
 {
     [Fact]
     public void CheckInputValidity_Returns_True_If_Input_Is_Valid()
     {
         //Arrange
-        var responseModel = new ResponseModel
+        var responseModel = new Response
         {
             Rates = new Dictionary<string, decimal>
             {
@@ -27,7 +27,7 @@ public class CheckInputValidityTests
     public void CheckInputValidity_Returns_False_If_Input_Is_Invalid()
     {
         //Arrange
-        var responseModel = new ResponseModel
+        var responseModel = new Response
         {
             Rates = new Dictionary<string, decimal>
             {
@@ -42,6 +42,6 @@ public class CheckInputValidityTests
         //Assert
         Assert.False(result);
     }
-    
+
 
 }

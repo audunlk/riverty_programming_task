@@ -1,12 +1,12 @@
 ﻿using CurrencyConverter.ConsoleApp.Models;
 
-namespace CurrencyConverter.ConsoleApp.Operations
+namespace CurrencyConverter.ConsoleApp.Operations.Input
 {
     public class CheckInputValidity
     {
         public static bool CheckInput(Response responsemodel, string input)
         {
-            if(input == string.Empty)
+            if (input == string.Empty)
             {
                 return false;
             }

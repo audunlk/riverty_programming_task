@@ -115,3 +115,5 @@ C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConv
 C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.UnitTests\obj\Debug\net7.0\CurrencyConverter.UnitTests.pdb
 C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.UnitTests\obj\Debug\net7.0\CurrencyConverter.UnitTests.genruntimeconfig.cache
 C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.UnitTests\obj\Debug\net7.0\ref\CurrencyConverter.UnitTests.dll
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.UnitTests\bin\Debug\net7.0\Castle.Core.dll
+C:\Users\audun\Documents\Riverty Programming Task\CurrencyConverter\CurrencyConverter.UnitTests\bin\Debug\net7.0\Moq.dll

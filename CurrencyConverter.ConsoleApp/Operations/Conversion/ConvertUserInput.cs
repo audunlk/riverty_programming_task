@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CurrencyConverter.ConsoleApp.Operations
+namespace CurrencyConverter.ConsoleApp.Operations.Conversion
 {
     public class ConvertUserInput
     {
@@ -17,8 +17,9 @@ namespace CurrencyConverter.ConsoleApp.Operations
             var toAmount = rates[to];
             var amountInEur = baseAmount / fromAmount * amount;
             var convertedAmount = amountInEur * toAmount;
-            return convertedAmount;
-            
+
+            decimal roundedAmount = Math.Round(convertedAmount, 4);
+            return roundedAmount;
         }
     }
 }

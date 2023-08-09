@@ -1,6 +1,6 @@
 ﻿using CurrencyConverter.ConsoleApp.Models;
 
-namespace CurrencyConverter.ConsoleApp.Operations
+namespace CurrencyConverter.ConsoleApp.Operations.Input
 {
     public class GetInputFromUser
     {
@@ -9,9 +9,9 @@ namespace CurrencyConverter.ConsoleApp.Operations
         {
             //Get the from currency from the user
             Console.WriteLine("Please type in the currency code you want to convert from. EXAMPLE: USD");
-            var from = Console.ReadLine();
+            var from = Console.ReadLine().ToUpper();
             //check if the currency code is valid
-            if(CheckInputValidity.CheckInput(responsemodel, from!) == false)
+            if (CheckInputValidity.CheckInput(responsemodel, from) == false)
             {
                 Console.WriteLine("You need to type in a valid currency code");
                 //recursive call to get the input again
@@ -20,8 +20,8 @@ namespace CurrencyConverter.ConsoleApp.Operations
 
             //Get the to currency from the user
             Console.WriteLine("Please type in the currency code you want to convert to");
-            var to = Console.ReadLine();
-            if(CheckInputValidity.CheckInput(responsemodel, to!) == false)
+            var to = Console.ReadLine().ToUpper();
+            if (CheckInputValidity.CheckInput(responsemodel, to) == false)
             {
                 Console.WriteLine("You need to type in a valid currency code");
                 //recursive call to get the input again
@@ -33,7 +33,7 @@ namespace CurrencyConverter.ConsoleApp.Operations
             //convert the amount to decimal
 
             //check for right input type
-            if(decimal.TryParse(amountString, out decimal amount) == false)
+            if (decimal.TryParse(amountString, out decimal amount) == false)
             {
                 Console.WriteLine("You need to type in a valid amount");
                 //recursive call to get the input again
@@ -43,8 +43,8 @@ namespace CurrencyConverter.ConsoleApp.Operations
             //return as object with from to and amount
             return new UserInput
             {
-                FromCurrency = from!.ToUpper(),
-                ToCurrency = to!.ToUpper(),
+                FromCurrency = from,
+                ToCurrency = to,
                 Amount = amount
             };
         }
