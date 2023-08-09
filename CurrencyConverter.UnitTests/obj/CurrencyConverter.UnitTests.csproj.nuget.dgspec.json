@@ -28,7 +28,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\audun\\Documents\\Riverty Programming Task\\CurrencyConverter\\CurrencyConverter.ConsoleApp\\CurrencyConverter.ConsoleApp.csproj": {
+                "projectPath": "C:\\Users\\audun\\Documents\\Riverty Programming Task\\CurrencyConverter\\CurrencyConverter.ConsoleApp\\CurrencyConverter.ConsoleApp.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -44,6 +48,10 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.10, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
