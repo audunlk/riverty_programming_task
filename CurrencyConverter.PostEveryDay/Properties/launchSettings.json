@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PostEveryDay": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
