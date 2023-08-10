@@ -5,7 +5,7 @@ namespace CurrencyConverter.ConsoleApp.Operations.Input
 {
     public class GetExchangeDate
     {
-        public static UserInput GetDate()
+        public static string GetDate()
         {
             Console.WriteLine("Please type a date in the format YYYY-MM-DD or press enter to use the latest rates");
             var date = Console.ReadLine();
@@ -19,11 +19,8 @@ namespace CurrencyConverter.ConsoleApp.Operations.Input
                 //recursive call to get the input again
                 return GetDate();
             };
-            
-            return new UserInput
-            {
-                Date = date
-            };
+
+            return date;
         }
     }
 }

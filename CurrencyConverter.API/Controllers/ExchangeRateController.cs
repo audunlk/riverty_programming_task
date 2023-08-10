@@ -1,82 +1,77 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using CurrencyConverter.API.Data;
+using CurrencyConverter.API.Services;
+using CurrencyConverter.API.Operations.Deserialization;
 
 namespace CurrencyConverter.API.Controllers
 {
-    public class HomeController : Controller
+    [Route("api/exchangerate")]
+    [ApiController]
+    public class ExchangeRateController : Controller
     {
-        // GET: HomeController
-        public ActionResult Index()
+        private readonly ExchangeRateDbContext _dbContext;
+
+        public ExchangeRateController(ExchangeRateDbContext dbContext)
         {
-            return View();
+            _dbContext = dbContext;
         }
 
-        // GET: HomeController/Details/5
-        public ActionResult Details(int id)
+        //get all the ResponseStatuses from the database
+        [HttpGet]
+        public IActionResult GetExchangeRates()
         {
-            return View();
+            var responseStatuses = _dbContext.ResponseStatus;
+            return Ok(responseStatuses);
         }
 
-        // GET: HomeController/Create
-        public ActionResult Create()
+        //get rates by response status id
+        [HttpGet("rates/{id}")]
+        public IActionResult GetRatesByResponseStatusId(int id)
         {
-            return View();
+            var rates = _dbContext.Rates.Where(r => r.ResponseStatusId == id);
+            return Ok(rates);
         }
 
-        // POST: HomeController/Create
+        //get all errors
+        [HttpGet("errors")]
+        public IActionResult GetErrors()
+        {
+            var errors = _dbContext.Errors;
+            return Ok(errors);
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> GetExchangeRate()
         {
             try
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                var response = await ExchangeServices.GetExchange("latest");
+                var responseStatus = CreateResponseStatusObject.CreateObject(response);
+                _dbContext.ResponseStatus.Add(responseStatus);
+                await _dbContext.SaveChangesAsync();
 
-        // GET: HomeController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: HomeController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
+                if (!response.Success)
+                {
+                    var errorObject = CreateErrorObject.CreateObject(response, responseStatus.Id);
+                    _dbContext.Errors.Add(errorObject);
+                    await _dbContext.SaveChangesAsync();
+                }
+                else if (response.Success)
+                {
+                    foreach (var kvp in response.Rates)
+                    {
+                        var rates = CreateRateObjects.CreateObject(kvp, responseStatus.Id);
+                        _dbContext.Rates.Add(rates);
+                    }
+                    await _dbContext.SaveChangesAsync();
+                }
+                await _dbContext.SaveChangesAsync();
+                return Ok(response);
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
-            }
-        }
-
-        // GET: HomeController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: HomeController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                Console.WriteLine($"{ex.Message}");
+                throw;
             }
         }
     }

@@ -5,8 +5,9 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+//add the connection string to the database
 builder.Services.AddDbContext<ExchangeRateDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ExchangeRateDbContext")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

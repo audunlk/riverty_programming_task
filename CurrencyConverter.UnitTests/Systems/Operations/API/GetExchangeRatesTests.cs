@@ -16,9 +16,9 @@ namespace CurrencyConverter.UnitTests.Systems.Operations.API
         {
             //Arrange
             var httpClient = new HttpClientFactory().CreateHttpClient();
-            var userInput = GetExchangeDate.GetDate();
+            var dateString = "2021-01-01";
             //Act
-            var result = await GetExchangeRates.GetExchangeRate(httpClient, userInput);
+            var result = await GetExchangeRates.GetExchangeRate(httpClient, dateString);
             //Assert
             Assert.IsType<Response>(result);
         }
@@ -32,10 +32,10 @@ namespace CurrencyConverter.UnitTests.Systems.Operations.API
                 .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
                 .ThrowsAsync(new HttpRequestException());
             var httpClient = new HttpClient(mockHttpMessageHandler.Object);
-            var userInput = GetExchangeDate.GetDate();
+            var dateString = "2021-01-01";
 
             //Assert
-            await Assert.ThrowsAsync<HttpRequestException>(() => GetExchangeRates.GetExchangeRate(httpClient, userInput));
+            await Assert.ThrowsAsync<HttpRequestException>(() => GetExchangeRates.GetExchangeRate(httpClient, dateString));
         }
     }
 }
