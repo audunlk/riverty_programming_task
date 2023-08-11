@@ -4,7 +4,6 @@ namespace CurrencyConverter.API.Models
 {
     public class ResponseStatusTable
     {
-        
         public int Id { get; set; }
         //Success could also be error code 200 meaning success
         //other codes meaning error

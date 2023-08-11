@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyConverter.UnitTests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyConverter.ConsoleApp", "CurrencyConverter.ConsoleApp\CurrencyConverter.ConsoleApp.csproj", "{0255708F-31AA-40E2-AC32-E5494AC0A5C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyConverter.PostEveryDay", "PostEveryDay\CurrencyConverter.PostEveryDay.csproj", "{0B2CC01B-6D7B-4E38-B5E0-BC1517AA52F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyConverter.PostEveryDay", "CurrencyConverter.PostEveryDay\CurrencyConverter.PostEveryDay.csproj", "{0B2CC01B-6D7B-4E38-B5E0-BC1517AA52F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

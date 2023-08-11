@@ -40,6 +40,14 @@ namespace CurrencyConverter.API.Controllers
             return Ok(errors);
         }
 
+        //get errors by response status responseStatusId
+        [HttpGet("errors/{responseStatusId}")]
+        public IActionResult GetErrorsByResponseStatusId(int id)
+        {
+            var errors = _dbContext.Errors.Where(e => e.ResponseStatusId == id);
+            return Ok(errors);
+        }
+
         [HttpPost]
         public async Task<IActionResult> GetExchangeRate()
         {
