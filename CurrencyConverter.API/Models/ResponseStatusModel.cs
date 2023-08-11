@@ -6,6 +6,9 @@ namespace CurrencyConverter.API.Models
     {
         
         public int Id { get; set; }
+        //Success could also be error code 200 meaning success
+        //other codes meaning error
+        //could include error info and type as nullable
         public bool Success { get; set; }
         public long Timestamp { get; set; }
         public string Base { get; set; } = "EUR";

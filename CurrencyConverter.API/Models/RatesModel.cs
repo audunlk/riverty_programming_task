@@ -9,7 +9,6 @@ namespace CurrencyConverter.API.Models
         public decimal Value { get; set; }
 
         [ForeignKey("ResponseStatusId")]
-        
         public int ResponseStatusId { get; set; }
         //navigation property
         [NotMapped]

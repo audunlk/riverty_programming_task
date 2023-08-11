@@ -24,8 +24,8 @@ namespace CurrencyConverter.API.Controllers
             return Ok(responseStatuses);
         }
 
-        //get rates by response status id
-        [HttpGet("rates/{id}")]
+        //get rates by response status responseStatusId
+        [HttpGet("rates/{responseStatusId}")]
         public IActionResult GetRatesByResponseStatusId(int id)
         {
             var rates = _dbContext.Rates.Where(r => r.ResponseStatusId == id);
