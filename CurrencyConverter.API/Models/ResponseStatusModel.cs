@@ -11,6 +11,7 @@ namespace CurrencyConverter.API.Models
         public bool Success { get; set; }
         public long Timestamp { get; set; }
         public string Base { get; set; } = "EUR";
+        //ideally the date would be unique in the database, but for the sake of this project it is not
         public DateTime Date { get; set; }
         [NotMapped]
         public ErrorTable Error { get; set; } = null!;

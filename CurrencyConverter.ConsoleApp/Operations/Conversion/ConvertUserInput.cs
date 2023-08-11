@@ -12,9 +12,10 @@ namespace CurrencyConverter.ConsoleApp.Operations.Conversion
         {
             //Since with the free api base is always EUR, we need to convert the amount to EUR first
             //then convert it to the desired currency
+            
             var baseAmount = 1;
-            var fromAmount = rates[from];
-            var toAmount = rates[to];
+            var fromAmount = rates[from.ToUpper()];
+            var toAmount = rates[to.ToUpper()];
             var amountInEur = baseAmount / fromAmount * amount;
             var convertedAmount = amountInEur * toAmount;
 

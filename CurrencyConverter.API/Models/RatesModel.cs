@@ -8,7 +8,6 @@ namespace CurrencyConverter.API.Models
         public string Currency { get; set; } = string.Empty;
         public decimal Value { get; set; }
 
-        [ForeignKey("ResponseStatusId")]
         public int ResponseStatusId { get; set; }
         //navigation property
         [NotMapped]

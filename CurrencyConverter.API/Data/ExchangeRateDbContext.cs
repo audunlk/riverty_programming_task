@@ -33,7 +33,9 @@ namespace CurrencyConverter.API.Data
                 .HasPrecision(18, 2);
                 entity.HasOne<ResponseStatusTable>(e => e.ResponseStatus)
                     .WithMany(e => e.Rates)
-                    .HasForeignKey(e => e.ResponseStatusId);
+                    .HasForeignKey(e => e.ResponseStatusId)
+                    .OnDelete(DeleteBehavior.Cascade);
+                
             });
 
             modelBuilder.Entity<ErrorTable>(entity =>
@@ -44,7 +46,8 @@ namespace CurrencyConverter.API.Data
                 entity.Property(e => e.Info).IsRequired();
                 entity.HasOne<ResponseStatusTable>(e => e.ResponseStatus)
                     .WithOne(e => e.Error)
-                    .HasForeignKey<ErrorTable>(e => e.ResponseStatusId);
+                    .HasForeignKey<ErrorTable>(e => e.ResponseStatusId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
         }
     }

@@ -2,6 +2,7 @@
 using CurrencyConverter.API.Data;
 using CurrencyConverter.API.Services;
 using CurrencyConverter.API.Operations.Deserialization;
+using CurrencyConverter.ConsoleApp.Operations.Conversion;
 
 namespace CurrencyConverter.API.Controllers
 {
@@ -20,16 +21,42 @@ namespace CurrencyConverter.API.Controllers
         [HttpGet]
         public IActionResult GetExchangeRates()
         {
-            var responseStatuses = _dbContext.ResponseStatus;
+            var responseStatuses = _dbContext.ResponseStatus.ToList();
+            if(responseStatuses.Count == 0)
+            {
+                return NotFound();
+            }
             return Ok(responseStatuses);
         }
 
         //get rates by response status responseStatusId
         [HttpGet("rates/{responseStatusId}")]
-        public IActionResult GetRatesByResponseStatusId(int id)
+        public IActionResult GetRatesByResponseStatusId(int responseStatusId)
         {
-            var rates = _dbContext.Rates.Where(r => r.ResponseStatusId == id);
+            var rates = _dbContext.Rates.Where(r => r.ResponseStatusId == responseStatusId).ToList();
+            if(rates.Count == 0)
+            {
+                return NotFound();
+            }
             return Ok(rates);
+        }
+
+        [HttpGet("latest")]
+        public IActionResult CalculateExchange(string from, string to, decimal amount)
+        {
+            //http://localhost:5270/api/exchangerate/latest?from=USD&to=EUR&amount=100
+            var responseStatus = _dbContext.ResponseStatus.Where(r => r.Success == true).OrderByDescending(r => r.Date).FirstOrDefault();
+            if(responseStatus == null)
+            {
+                return NotFound();
+            }
+            var rates = _dbContext.Rates.Where(r => r.ResponseStatusId == responseStatus.Id).ToDictionary(r => r.Currency, r => r.Value);
+            if(rates.Count == 0)
+            {
+                return NotFound();
+            }
+            var result = ConvertUserInput.Convert(from, to, amount, rates);
+            return Ok(result);
         }
 
         //get all errors
@@ -37,6 +64,10 @@ namespace CurrencyConverter.API.Controllers
         public IActionResult GetErrors()
         {
             var errors = _dbContext.Errors;
+            if(errors == null)
+            {
+                return NotFound();
+            }
             return Ok(errors);
         }
 
@@ -45,6 +76,10 @@ namespace CurrencyConverter.API.Controllers
         public IActionResult GetErrorsByResponseStatusId(int id)
         {
             var errors = _dbContext.Errors.Where(e => e.ResponseStatusId == id);
+            if(errors == null)
+            {
+                return NotFound();
+            }
             return Ok(errors);
         }
 
@@ -53,11 +88,13 @@ namespace CurrencyConverter.API.Controllers
         {
             try
             {
-                var response = await ExchangeServices.GetExchange("latest");
+                //date today in yyyy-MM-dd format
+                var dateNow = DateTime.Now.ToString("yyyy-MM-dd");
+                //perform a get request to the database to check if there already is a successful response for today
+                var response = await ExchangeServices.GetExchange(dateNow);
                 var responseStatus = CreateResponseStatusObject.CreateObject(response);
                 _dbContext.ResponseStatus.Add(responseStatus);
                 await _dbContext.SaveChangesAsync();
-
                 if (!response.Success)
                 {
                     var errorObject = CreateErrorObject.CreateObject(response, responseStatus.Id);
@@ -82,5 +119,20 @@ namespace CurrencyConverter.API.Controllers
                 throw;
             }
         }
+
+        ////get the ResponseStatus by date
+        //[HttpGet("{date}")]
+        //public IActionResult GetResponseStatusByDate(DateTime date)
+        //{
+        //    //2021-03-01T00:00:00
+        //    //since for testing purposes the date is not unique in the database, the first responseStatus with the date is returned
+        //    var responseStatus = _dbContext.ResponseStatus.Where(r => r.Success == true && r.Date == date).FirstOrDefault();
+        //    if (responseStatus == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    // else return the rates of the responseStatus
+        //    return Ok(responseStatus);
+        //}
     }
 }
